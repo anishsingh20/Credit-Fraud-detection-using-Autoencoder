@@ -2,6 +2,7 @@
 require(dplyr)
 require(ggplot2)
 require(readr)#faster data reading
+require(highcharter)
 
 #reading the data
 
@@ -21,5 +22,17 @@ attach(fraud)
 
 table(Class)
 #highly unbalanced dataset- only 492 fradulent cases
+
+
+#let's do some plotting and explore the dataset
+
+#histogram of time taken for each transaction
+hchart(Time,color="purple",name="Time in seconds") %>% 
+  hc_title(text="Histogram of Time taken for each transaction in Seconds",align="center") %>%
+    hc_exporting(enabled=T)
+  
+
+
+
 
 
