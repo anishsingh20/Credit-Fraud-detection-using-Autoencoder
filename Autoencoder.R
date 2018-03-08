@@ -24,12 +24,22 @@ table(Class)
 #highly unbalanced dataset- only 492 fradulent cases
 
 
+#modifying time variable in hours
+
+time<-fraud %>% select(Time)
+
+time<- time %>% mutate(Time = (Time/(60*60)))
+
+
+
 #let's do some plotting and explore the dataset
 
 #histogram of time taken for each transaction
-hchart(Time,color="purple",name="Time in seconds") %>% 
-  hc_title(text="Histogram of Time taken for each transaction in Seconds",align="center") %>%
-    hc_exporting(enabled=T)
+hchart(time$Time,color="orange",name="Time in hours") %>% 
+  hc_title(text="Histogram of Time taken for each transaction in Hours",align="center") %>%
+    hc_exporting(enabled=T) %>% 
+     hc_add_theme(hc_theme_elementary()) 
+
   
 
 
