@@ -94,7 +94,10 @@ ggplot(fraud,aes(y=Amount,x=Class)) +
 
 ggplot(fraud,aes(x=Time,y=Amount,color=as.factor(Class))) + 
   geom_point() +
-  scale_color_manual(values=c("#E69F00", "#56B4E9"))
+  #adding custom colors
+  scale_color_manual(values=wes_palette(n=2, name="Cavalcanti")) +
+  labs(x="Time",y="amount",main="Scatter plot of Time vs Amount colored by type of transaction",
+       fill="Fraud")
   
   
 
