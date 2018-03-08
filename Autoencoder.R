@@ -2,6 +2,7 @@
 require(dplyr)
 require(ggplot2)
 require(readr)#faster data reading
+library(ggridges)
 require(highcharter)
 
 #reading the data
@@ -59,6 +60,30 @@ ggplot(aes(x=Amount),data = fraud) +
   xlab("Amount till 99 percentile") +
   ylab("Frequency")
   
+
+
+#For an autoencoder to work well we have a strong initial assumption: 
+#that the distribution of variables for normal transactions is different from the distribution for 
+#fraudulent ones. Let’s make some plots to verify this. 
+#Variables were transformed to a [0,1] interval for plotting.
+
+
+
+
+fraud %>%
+  gather(variable, value, -Class) %>%
+  ggplot(aes(y = as.factor(variable), 
+             fill = as.factor(Class), 
+             x = percent_rank(value))) +
+  geom_density_ridges() +
+  labs(x="Normalized variable",y="Variable",fill="Distribution of Fraud and Non-fraud")
+
+
+#We can see that distributions of variables for fraudulent transactions are very different then from normal ones, except for the Time variable, 
+#which seems to have the exact same distribution.
+
+
+
   
   
 
