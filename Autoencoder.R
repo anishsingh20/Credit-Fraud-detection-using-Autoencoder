@@ -84,6 +84,17 @@ fraud %>%
 
 
 
+
+#let's check the distribution of Amount and The normal and fradulent transactions
+
+ggplot(fraud,aes(y=Amount,x=Class)) + 
+  geom_boxplot(aes(group=Class)) +
+  scale_y_continuous(limits=c(0,quantile(Amount,c(0.99))))
+
+
+ggplot(fraud,aes(x=Time,y=Amount,color=as.factor(Class))) + 
+  geom_point() +
+  scale_color_manual(values=c("#E69F00", "#56B4E9"))
   
   
 
