@@ -35,7 +35,7 @@ time<- time %>% mutate(Time = (Time/(60*60)))
 #let's do some plotting and explore the dataset
 
 #histogram of time taken for each transaction
-hchart(time$Time,color="orange",name="Time in hours") %>% 
+hchart(time$Time,color="purple",name="Time in hours") %>% 
   hc_title(text="Histogram of Time taken for each transaction in Hours",align="center") %>%
     hc_exporting(enabled=T) %>% 
      hc_add_theme(hc_theme_elementary()) 
@@ -43,6 +43,15 @@ hchart(time$Time,color="orange",name="Time in hours") %>%
   
 
 
+#now let's check the distribution of Amount variable- the amount of transcation
+summary(Amount)
 
+quantile(Amount,c(0.90)) #finding 90 th percentile-it gives us a values which divides the 
+#Amount into 2 parts, i.e 90% values lying below it and only 10% elements having values above this
+
+
+ggplot(aes(x=Ampunt),data = fraud) +
+  geom_histogram() +
+  
 
 
