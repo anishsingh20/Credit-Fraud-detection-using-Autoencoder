@@ -50,8 +50,16 @@ quantile(Amount,c(0.90)) #finding 90 th percentile-it gives us a values which di
 #Amount into 2 parts, i.e 90% values lying below it and only 10% elements having values above this
 
 
-ggplot(aes(x=Ampunt),data = fraud) +
-  geom_histogram() +
+#histogram of amount till 99 percentile
+ggplot(aes(x=Amount),data = fraud) +
+  geom_histogram(color="black",fill="green",alpha=0.8,bins=30) +
+  scale_x_continuous(breaks=seq(0,1000,100),limits=c(0,quantile(Amount,c(0.99)))) +
+  scale_y_continuous(limits=c(0,30000)) +
+  ggtitle("Histogram of Transaction Amount") +
+  xlab("Amount till 99 percentile") +
+  ylab("Frequency")
+  
+  
   
 
 
