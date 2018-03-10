@@ -201,9 +201,22 @@ model %>%
 summary(model)
 
 
-#let's compile and define the loss function and optimization streategy to use
+#let's compile and define the loss function and optimization streategy to use-
+#we will use ADAM as the optimizer to optimze the network and update weights and params
+#and minimize the loss
 
 model %>% compile(loss="mean_squared_error",optimizer = "adam") 
+
+
+
+#let's train the model
+
+#we will only feed our model the normal(non-fradulent) cases, so that it is able to encode
+#that how and differentiate between normal and non-fradulent cases using the different distribution
+#amongst both
+
+
+
 
 
 
