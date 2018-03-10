@@ -155,17 +155,32 @@ minmax_norm <- function(x, desc) {
 #creating normalized versions of the dataset
 
 #getting descriptive stattistics parameters for train and test data
-x_train<-train_df %>% 
+desc_train<-train_df %>% 
   select(-Class) %>% 
     desc_stat()
-  
-  
-x_test<-test_df %>% 
+
+
+desc_test <-test_df %>% 
   select(-Class) %>% 
   desc_stat()
 
+
 #training inputs
-x_train<-
+x_train<- train_df %>% select(-Class) %>% 
+    minmax_norm(desc_train) %>% 
+    as.matrix()
+
+#class lebels for training data
+y_train<-train_df %>% select(Class) 
+
+
+#testing inputs
+x_test<-test_df %>% select(-Class) %>% 
+  minmax_norm(desc_test) %>% 
+  as.matrix()
+
+#Class labels for test data
+y_test<-test_df %>% select(Class)  
 
 
 
