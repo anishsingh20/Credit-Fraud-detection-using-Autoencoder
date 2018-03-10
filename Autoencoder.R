@@ -110,16 +110,23 @@ ggplot(fraud,aes(x=Time,y=Amount,color=as.factor(Class))) +
 #we will use the first 200000 for training and rest for testting
 
 
-#randomly shuffling the data
-random_fraud<-sample(1:nrow(fraud),nrow(fraud),replace=T)
+#randomly shuffling the data without replacement
+random_fraud<-sample(1:nrow(fraud),nrow(fraud),replace=F)
 
 
 #shuffling the rows and making a shuffled data set
 random_fraud<- fraud[random_fraud,]
   
 
-#training data set
-train_df<-random_fraud %>% filter(row_number())
+#training data set-selecting 200000 observations for training data
+#we will not use Time variable as it has same distribution for Normal and fradulent cases
+train_df<-random_fraud[1:200000,2:ncol(random_fraud)]
+
+#testing dataset
+test_df<-random_fraud[200001:nrow(random_fraud),2:ncol(random_fraud)]
+
+
+
 
 
 
