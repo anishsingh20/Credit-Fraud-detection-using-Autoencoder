@@ -201,4 +201,10 @@ model %>%
 summary(model)
 
 
+#let's compile and define the loss function and optimization streategy to use
+
+model %>% compile(loss="mean_squared_error",optimizer = "adam") 
+
+
+
 
