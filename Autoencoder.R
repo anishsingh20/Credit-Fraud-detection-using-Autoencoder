@@ -195,7 +195,7 @@ model<-keras_model_sequential()
 model %>% 
   layer_dense(units=15,activation = "tanh", input_shape = ncol(x_train)) %>% 
   layer_dense(units=10,activation = "tanh") %>% 
-  layer_dense(units = 18, activation = "tanh")
+  layer_dense(units = ncol(x_train))
 
 #let's check the summary of the model
 summary(model)
@@ -215,9 +215,15 @@ model %>% compile(loss="mean_squared_error",optimizer = "adam")
 #that how and differentiate between normal and non-fradulent cases using the different distribution
 #amongst both
 
+model %>% fit(x = x_train[y_train==0,] ,
+              y = x_train[y_train==0,],
+              epochs = 100,
+              batch_size = 32,
+              validation_data = list(x_test[y_test == 0,], x_test[y_test == 0,]),
+              callbacks = callback_tensorboard(log_dir = "logs/run_a")
+              )
 
 
-
-
+tensorboard()
 
 
