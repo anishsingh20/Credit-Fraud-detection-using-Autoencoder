@@ -5,6 +5,7 @@ require(readr)#faster data reading
 library(ggridges)
 require(highcharter)
 require(purrr)
+require(keras)
 
 #reading the data
 
@@ -184,6 +185,20 @@ y_test<-test_df %>% select(Class)
 
 
 
+#--------------------MODEL DEFINATION----------------#
+
+
+#generating a symmetric autoencodes with 3 dense layers
+
+model<-keras_model_sequential()
+
+model %>% 
+  layer_dense(units=15,activation = "tanh", input_shape = ncol(x_train)) %>% 
+  layer_dense(units=10,activation = "tanh") %>% 
+  layer_dense(units = 18, activation = "tanh")
+
+#let's check the summary of the model
+summary(model)
 
 
 
