@@ -111,10 +111,15 @@ ggplot(fraud,aes(x=Time,y=Amount,color=as.factor(Class))) +
 
 
 #randomly shuffling the data
-random_fraud<-
+random_fraud<-sample(1:nrow(fraud),nrow(fraud),replace=T)
 
 
-train<- fraud %>% filter() %>% select(-Time)
+#shuffling the rows and making a shuffled data set
+random_fraud<- fraud[random_fraud,]
   
+
+#training data set
+train_df<-random_fraud %>% filter(row_number())
+
 
 
