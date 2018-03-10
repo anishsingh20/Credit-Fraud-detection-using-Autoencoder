@@ -232,8 +232,16 @@ tensorboard(log_dir = "logs/run_a")
 
 pred.train<-predict(model,x_train)
 
-
 pred.test = predict(model,x_test)
+
+
+mse_train<- apply((x_train-pred.train)^2,1,sum)
+
+mse_test<-apply((x_test-pred.test)^2,1,sum)
+
+
+#now finding AUC curves
+
 
 
 
