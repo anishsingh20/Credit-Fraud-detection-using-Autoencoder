@@ -4,6 +4,7 @@ require(ggplot2)
 require(readr)#faster data reading
 library(ggridges)
 require(highcharter)
+require(purrr)
 
 #reading the data
 
@@ -124,6 +125,47 @@ train_df<-random_fraud[1:200000,2:ncol(random_fraud)]
 
 #testing dataset
 test_df<-random_fraud[200001:nrow(random_fraud),2:ncol(random_fraud)]
+
+
+#Normalizing the inputs
+
+#min-max normalization
+
+#function to extract descriptive statistic params to be used in a min-max normalization function
+desc_stat<- function(x)
+{
+  map(x,~list(
+    min = min(.x),
+    max = max(.x),
+    mean = mean(.x),
+    sd = sd(.x)
+  ))
+}
+
+
+# Given a dataset and normalization constants it will create a min-max normalized
+# version of the dataset.
+minmax_norm <- function(x, desc) {
+  map2_dfc(x, desc, ~(.x - .y$min)/(.y$max - .y$min))
+}
+
+
+
+
+#creating normalized versions of the dataset
+
+#getting descriptive stattistics parameters for train and test data
+x_train<-train_df %>% 
+  select(-Class) %>% 
+    desc_stat()
+  
+  
+x_test<-test_df %>% 
+  select(-Class) %>% 
+  desc_stat()
+
+#training inputs
+x_train<-
 
 
 
