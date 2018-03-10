@@ -224,6 +224,16 @@ model %>% fit(x = x_train[y_train==0,] ,
               )
 
 
-tensorboard()
+tensorboard(log_dir = "logs/run_a")
+
+
+
+#calculating the mean squared error
+
+pred.train<-predict(model,x_train)
+
+
+pred.test = predict(model,x_test)
+
 
 
