@@ -96,9 +96,25 @@ ggplot(fraud,aes(x=Time,y=Amount,color=as.factor(Class))) +
   geom_point() +
   #adding custom colors
   scale_color_manual(values=wes_palette(n=2, name="Cavalcanti")) +
-  labs(x="Time",y="amount",main="Scatter plot of Time vs Amount colored by type of transaction",
-       fill="Fraud")
+  labs(x="Time",y="amount",title="Scatter plot of Time vs Amount colored by type of transaction",
+       color="Fraud")
   
+
+
+#-----------------------------------PREDICTIVE MODELLING----------------------
+
+#Data pre-processing
+
+#splitting the data into training and testing part
+
+#we will use the first 200000 for training and rest for testting
+
+
+#randomly shuffling the data
+random_fraud<-
+
+
+train<- fraud %>% filter() %>% select(-Time)
   
 
 
