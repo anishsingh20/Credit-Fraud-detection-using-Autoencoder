@@ -1,7 +1,8 @@
 # Credit-Fraud-detection-using-Autoencoder
+
 Credit fraud detection using keras and Autoencoder in R.
 
-The credit data set is downloaded from Kaggle and using that dataset I will cluster fradulent and non-fradulent cases.
+The credit data set was downloaded from Kaggle and using that dataset I have trained an Autoendocer to predict which cases will be fradulent and non-fradulent.
 
 
 ## Plot for the differences in distribution of Fradulent and normal transactions
